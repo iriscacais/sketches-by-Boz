@@ -1,0 +1,5 @@
+{
+    "sketches": [
+        {"id": 1, "title": "teste", "text": "teste lorem ipsum bla bla bla", "tags": ["teste"], "createdAt": 1737000000000, "updatedAt": 1737000000000}
+    ]
+}
