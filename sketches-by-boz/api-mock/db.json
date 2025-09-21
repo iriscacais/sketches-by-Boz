@@ -1,5 +1,34 @@
 {
-    "sketches": [
-        {"id": 1, "title": "teste", "text": "teste lorem ipsum bla bla bla", "tags": ["teste"], "createdAt": 1737000000000, "updatedAt": 1737000000000}
-    ]
+  "sketches": [
+    {
+      "id": "1",
+      "text": "Sketches by Boz, Illustrative of Every-day Life and Every-day People (comumente conhecido como Sketches by Boz ) é uma coleção de peças curtas que o autor inglês Charles Dickens publicou originalmente em vários jornais e outros periódicos entre 1833 e 1836.",
+      "theme": "amarelo"
+    },
+    {
+      "id": "2",
+      "text": "Sketches by Boz, lorem",
+      "theme": "laranja"
+    },
+    {
+      "id": "3",
+      "text": "Sketches by Boz, Illustrative of Every-day Life and Every-day People (comumente conhecido como Sketches by Boz ) é uma coleção de peças curtas que o autor inglês Charles Dickens publicou originalmente em vários jornais e outros periódicos entre 1833 e 1836.",
+      "theme": "verde"
+    },
+    {
+      "id": "5",
+      "text": "Sketches by Boz, Illustrative of Every-day Life and Every-day People (comumente conhecido como Sketches by Boz ) é uma coleção de peças curtas que o autor inglês Charles Dickens publicou originalmente em vários jornais e outros periódicos entre 1833 e 1836.",
+      "theme": "amarelo"
+    },
+    {
+      "id": "7",
+      "text": "Sketches by Boz, Illustrative of Every-day Life and Every-day People (comumente conhecido como Sketches by Boz ) é uma coleção de peças curtas que o autor inglês Charles Dickens publicou originalmente em vários jornais e outros periódicos entre 1833 e 1836.",
+      "theme": "amarelo"
+    },
+    {
+      "id": "6373",
+      "text": "nota nota nqregqergota",
+      "theme": "verde"
+    }
+  ]
 }
