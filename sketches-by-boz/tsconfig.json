@@ -7,7 +7,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] },
-    "types": ["vite/client"]
+    "types": ["vite/client", "jest"]
   },
-  "include": ["src", "env.d.ts"]
+  "include": ["src", "env.d.ts", "jest.setup.ts"]
 }
