@@ -5,11 +5,11 @@
   ButtonsContainer, 
 } from "./styles";
 import Modal from "../modal/index";
-import ButtonWithIcon from "../Button";
-import { postSketches } from "../../services/sketches.api";
+import ButtonWithIcon from "../button/index";
 import pen from "../../assets/caneta-pena.png";
+import { Theme, HeaderProps} from "../../types/notes";
 
-const Header = ({onCreate}) => {
+const Header: React.FC<HeaderProps> = ({onCreate}) => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -1,14 +1,7 @@
 import React from 'react';
 import {Button, Icon} from './styles';
 import Tooltip from "@mui/material/Tooltip";
-
-type ButtonWithIconProps = {
-  onClick?: () => void;
-  icon?: string;
-  iconAlt?: string;
-  label: string;
-  disabled?: boolean;
-};
+import { ButtonWithIconProps } from '../../types/notes';
 
 const ButtonWithIcon : React.FC<ButtonWithIconProps> = ({
   onClick,

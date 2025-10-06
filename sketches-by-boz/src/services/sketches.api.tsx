@@ -1,12 +1,13 @@
 import axios from "axios";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: "http://localhost:4000",
 });
 
 export type Sketch = {
-  id?: number | string;
+  id?: string;
   text: string;
+  theme: string
 };
 
 export const getSketches = async () => {
@@ -23,7 +24,6 @@ export const postSketches = async (body: {
 }) => {
   try {
     const response = await api.post("/sketches", body);
-     console.log(response.data)
     return response.data;
   } catch (error) {
     throw error;
@@ -31,7 +31,7 @@ export const postSketches = async (body: {
 };
 
 export const updateSketchById = async (
-  id: number | string,
+  id: string,
   body: Partial<Sketch>
 ) => {
   try {
@@ -43,8 +43,7 @@ export const updateSketchById = async (
   }
 };
 
-
-export const deleteSketchById = async (id: number | string) => {
+export const deleteSketchById = async (id: string) => {
   try {
     const response = await api.delete(`/sketches/${id}`);
     return { success: response.status >= 200 && response.status < 300, id };

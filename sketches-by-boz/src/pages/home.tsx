@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header/index";
 import Content from "../components/contentarea/index";
-import { getSketches, postSketches } from "../services/sketches.api";
+import { getSketches, postSketches, deleteSketchById, updateSketchById } from "../services/sketches.api";
 import Snackbar from '@mui/material/Snackbar';
-
-type Theme = "laranja" | "verde" | "lilas" | "amarelo";
-export type CardData = { id: number | string; text: string; theme: Theme };
+import { Theme, CardData } from "../types/notes";
 
 const Home: React.FC = () => {
   const [sketches, setSketches] = useState<CardData[]>([]);
@@ -46,15 +44,31 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleUpdate = (updated: CardData) => {
-    setSketches((prev) => prev.map((card) => (card.id === updated.id ? updated : card)));
-    showToast("Atualizado com sucesso!");
+  const handleUpdate = async (id: string, payload: { text: string; theme: Theme }) => {
+    try {
+      const updated = await updateSketchById(id, payload);
+      setSketches((prev) =>
+        prev.map((card) => (card.id === updated.id ? updated : card))
+      );
+      showToast("Atualizado com sucesso!");
+    } catch {
+      showToast("Erro ao atualizar.");
+    }
   };
 
-  const handleDelete = (id: CardData["id"]) => {
-    setSketches((prev) => prev.filter((card) => card.id !== id));
-    showToast("Apagado com sucesso!");
+
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await deleteSketchById(id);
+      if (res.success) {
+        setSketches((prev) => prev.filter((card) => card.id !== id));
+        showToast("Apagado com sucesso!");
+      }
+    } catch {
+      showToast("Erro ao apagar.");
+    }
   };
+
   return (
     <>
       <Header onCreate={handleCreate} />
@@ -62,10 +76,10 @@ const Home: React.FC = () => {
         sketches={sketches}
         loading={loading}
         error={error}
-        onUpdate={handleUpdate}
-        onDelete={handleDelete}
+        onUpdated={handleUpdate}
+        onDeleted={handleDelete}
       />
-       <Snackbar
+      <Snackbar
         open={toastOpen}
         onClose={() => setToastOpen(false)}
         autoHideDuration={2500}

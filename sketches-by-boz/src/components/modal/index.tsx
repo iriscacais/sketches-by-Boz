@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {Overlay, ModalBox, Title, ButtonsContainer} from "./styles";
-import { postSketches } from "../../services/sketches.api";
 import ButtonWithIcon from "../button/index";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -8,16 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import type { SelectChangeEvent } from "@mui/material/Select";
-
-type ModalProps = {
-  onClose: () => void;
-  title: string;
-  initialText?: string;
-  initialTheme?: Theme | "";
-  onSubmit?: (payload: { text: string; theme: Theme }) => Promise<void> | void;
-};
-
-type Theme = "laranja" | "verde" | "lilas" | "amarelo";
+import { Theme, ModalProps } from "../../types/notes";
 
 const Modal: React.FC<ModalProps> = ({ onClose, title, initialTheme = "", onSubmit, initialText }) => {
   const [text, setText] = useState(initialText || "");
@@ -25,17 +15,9 @@ const Modal: React.FC<ModalProps> = ({ onClose, title, initialTheme = "", onSubm
 
   const isDisabled = !text.trim() || !theme;
 
-   const handleSubmit = async () => {
-    try {
-      if (onSubmit) {
-        await onSubmit({ text, theme: theme as Theme });
-      } else {
-        await postSketches({ text, theme: theme as Theme });
-      }
-      onClose();
-    } catch (error) {
-      console.error("Erro ao salvar:", error);
-    }
+  const handleSubmit = async () => {
+    await onSubmit?.({ text, theme: theme as Theme }); 
+    onClose();
   };
 
   const handleThemeChange = (e: SelectChangeEvent) => {
@@ -57,6 +39,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, title, initialTheme = "", onSubm
           minRows={4}
           variant="outlined"
           margin="normal"
+          required
         />
         <FormControl fullWidth margin="normal">
           <InputLabel id="tema-label" shrink>Tema</InputLabel>
@@ -67,6 +50,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, title, initialTheme = "", onSubm
             value={theme}
             onChange={handleThemeChange}
             displayEmpty
+            required
           >
             <MenuItem value="" disabled>
               Selecione um tema
